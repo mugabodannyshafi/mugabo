@@ -4,6 +4,7 @@ import NavBar from "@/components/NavBar";
 import HeroSection from "@/components/Hero";
 import Skills from "@/components/Skills";
 import Experience from "@/components/Experince";
+import Projects from "@/components/Projects";
 export default function Home() {
   return (
     <div className="flex flex-col px-5 gap-4 overflow-hidden">
@@ -11,6 +12,7 @@ export default function Home() {
       <HeroSection />
       <Skills />
       <Experience />
+      <Projects />
     </div>
   );
 }

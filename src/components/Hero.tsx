@@ -109,7 +109,7 @@ const HeroSection = () => {
                 consider myself to be a fast learner, able to grasp new concepts
                 quickly with excellent capacity to remember new information. My
                 tech stack in short includes: JavaScript, TypeScript, NodeJs,
-                ReactJs, Tailwind and NextJs.
+                ReactJs, Tailwind CSS, NextJs and NestJs.
               </span>
             </motion.div>
 

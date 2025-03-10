@@ -7,20 +7,36 @@ import { useRef } from "react";
 
 const experiences = [
   {
-    date: "February 2024 - November 2024",
-    title: "Full-Stack Developer Intern",
-    company: "Andela, Kigali",
-    description:
-      "Worked on full-stack web applications, enhancing backend API performance and frontend UX. Learned best practices in scalable software development.",
-    skills: ["JavaScript", "React", "Node.js", "Express", "PostgresDB", "Tailwind"],
-  },
-  {
     date: "August 2024 - Present",
     title: "Backend Developer",
     company: "Academic Bridge, Kigali",
     description:
       "Building robust backend solutions using Node.js and NestJS. Focused on optimizing database queries and API development for scalable applications.",
-    skills: ["Node.js", "NestJS", "Mysql", "Docker", "Jest", "nginx", "REST APIs"],
+    skills: [
+      "TypeScript",
+      "NestJS",
+      "Mysql",
+      "Docker",
+      "Jest",
+      "nginx",
+      "REST APIs",
+      "Redis",
+    ],
+  },
+  {
+    date: "February 2024 - November 2024",
+    title: "Full-Stack Developer Intern",
+    company: "Andela, Kigali",
+    description:
+      "Worked on full-stack web applications, enhancing backend API performance and frontend UX. Learned best practices in scalable software development.",
+    skills: [
+      "JavaScript",
+      "React",
+      "Node.js",
+      "Express",
+      "PostgresDB",
+      "Tailwind",
+    ],
   },
 ];
 
@@ -78,7 +94,7 @@ const Experience = () => {
                     {exp.skills.map((skill, skillIndex) => (
                       <div
                         key={skillIndex}
-                        className="bg-green/10 rounded-full px-2 py-1 text-white text-[0.8rem] flex justify-center items-center"
+                        className="bg-green/10 rounded-full px-2 py-1 text-green text-[0.8rem] flex justify-center items-center"
                       >
                         <span>{skill}</span>
                       </div>
