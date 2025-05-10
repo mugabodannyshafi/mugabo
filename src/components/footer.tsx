@@ -20,7 +20,7 @@ const Footer = () => {
             Inspired by{" "}
             <LinkPreview url="https://nziranziza.dev/" className="text-green">
               <span className="text-green font-medium hover:underline cursor-pointer">
-                Daniel Nziranziza
+                Daniel NZIRANZIZA
               </span>
             </LinkPreview>
           </p>
