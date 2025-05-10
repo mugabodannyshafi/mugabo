@@ -12,7 +12,7 @@ const GradientBackground: React.FC<GradientBackgroundProps> = ({
   children,
 }) => {
   return (
-    <div className="min-h-screen bg-navy overflow-hidden">
+    <div  className="min-h-screen bg-navy overflow-hidden">
       <div
         className="fixed top-[-10%] right-[-5%] h-[600px] w-[600px] rounded-full blur-[120px] opacity-30"
         style={{

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import logo from "@/static/shafiLogo.png";
@@ -12,9 +12,34 @@ import { IoMdClose } from "react-icons/io";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+
+  // Handle scrolling behavior
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+      const isScrollingDown = currentScrollPos > prevScrollPos;
+
+      // Only hide navbar after scrolling down 60px from the top
+      // This prevents the navbar from hiding immediately on small scrolls
+      const shouldBeVisible =
+        currentScrollPos < 60 ||
+        !isScrollingDown ||
+        prevScrollPos - currentScrollPos > 10;
+
+      setVisible(shouldBeVisible);
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [prevScrollPos]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    // When opening menu, always make navbar visible
+    if (!isMenuOpen) setVisible(true);
   };
 
   const socialLinks = [
@@ -47,11 +72,11 @@ const NavBar = () => {
 
   return (
     <>
-      <motion.div
+      <motion.header
         className="fixed top-0 left-0 w-full h-16 md:h-20 px-5 flex justify-between items-center bg-darkSlate backdrop-blur-lg bg-opacity-80 z-50"
-        initial={{ opacity: 1, y: 0 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
+        initial={{ y: 0 }}
+        animate={{ y: visible ? 0 : "-100%" }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         <div className="flex items-center">
           <Image src={logo} alt="Logo" width={40} height={40} />
@@ -76,10 +101,11 @@ const NavBar = () => {
           className="md:hidden flex items-center justify-center text-green text-2xl"
           onClick={toggleMenu}
           whileTap={{ scale: 0.9 }}
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         >
           {isMenuOpen ? <IoMdClose /> : <FaBarsStaggered />}
         </motion.button>
-      </motion.div>
+      </motion.header>
 
       <AnimatePresence>
         {isMenuOpen && (
