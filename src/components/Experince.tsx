@@ -48,8 +48,8 @@ const experiences = [
 ];
 
 const Experience = () => {
-  const ref = useRef(null);
-  const containerRef = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
