@@ -57,7 +57,6 @@ const NavBar = () => {
           <Image src={logo} alt="Logo" width={40} height={40} />
         </div>
 
-        {/* Desktop Resume Button */}
         <motion.a
           href="shafi.pdf"
           target="_blank"
@@ -73,7 +72,6 @@ const NavBar = () => {
           Resume
         </motion.a>
 
-        {/* Mobile Menu Toggle */}
         <motion.button
           className="md:hidden flex items-center justify-center text-green text-2xl"
           onClick={toggleMenu}
@@ -83,7 +81,6 @@ const NavBar = () => {
         </motion.button>
       </motion.div>
 
-      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -94,7 +91,6 @@ const NavBar = () => {
             transition={{ duration: 0.3 }}
           >
             <div className="flex flex-col items-center space-y-8">
-              {/* Resume Button in Mobile Menu */}
               <motion.a
                 href="shafi.pdf"
                 target="_blank"
@@ -113,7 +109,6 @@ const NavBar = () => {
                 Resume
               </motion.a>
 
-              {/* Social Links in Mobile Menu */}
               <motion.div
                 className="flex flex-row items-center justify-center gap-5 mt-6"
                 initial={{ opacity: 0 }}

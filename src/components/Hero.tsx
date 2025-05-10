@@ -25,7 +25,6 @@ const HeroSection = () => {
   return (
     <section className="w-full min-h-screen flex items-center justify-center px-4 md:px-6">
       <div className="w-full max-w-4xl">
-        {/* Main Content */}
         <motion.span
           className="text-green text-base block mb-3"
           initial={{ opacity: 0, y: 20 }}

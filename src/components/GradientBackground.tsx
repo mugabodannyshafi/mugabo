@@ -13,7 +13,6 @@ const GradientBackground: React.FC<GradientBackgroundProps> = ({
 }) => {
   return (
     <div className="min-h-screen bg-navy overflow-hidden">
-      {/* Top right gradient */}
       <div
         className="fixed top-[-10%] right-[-5%] h-[600px] w-[600px] rounded-full blur-[120px] opacity-30"
         style={{
@@ -21,7 +20,6 @@ const GradientBackground: React.FC<GradientBackgroundProps> = ({
         }}
       />
 
-      {/* Bottom left gradient */}
       <div
         className="fixed bottom-[-10%] left-[-5%] h-[600px] w-[600px] rounded-full blur-[120px] opacity-30"
         style={{
@@ -29,7 +27,6 @@ const GradientBackground: React.FC<GradientBackgroundProps> = ({
         }}
       />
 
-      {/* Social Media Icons - only visible on lg screens and up */}
       <div className="fixed text-green left-10 bottom-0 hidden lg:flex flex-col items-center gap-6 z-20">
         <a
           href="https://github.com/mugabodannyshafi"
@@ -74,7 +71,6 @@ const GradientBackground: React.FC<GradientBackgroundProps> = ({
         <div className="h-24 w-px bg-slate-400 mt-2"></div>
       </div>
 
-      {/* Main content */}
       <div className="relative z-10">{children}</div>
     </div>
   );

@@ -189,7 +189,6 @@ const Projects = () => {
                     />
                   </div>
 
-                  {/* Content Container */}
                   <div className="flex flex-col gap-2 p-4">
                     <div className="flex justify-between items-center">
                       <h4 className="text-sm capitalize text-green">
@@ -211,7 +210,6 @@ const Projects = () => {
                     </h4>
                     <p className="text-slate mt-2">{project.description}</p>
 
-                    {/* Collaborator section */}
                     {project.collaborate && project.collaborate !== "none" && (
                       <div className="flex items-center gap-2 mt-3 text-sm text-lightestSlate">
                         <FiUsers className="text-green" />
@@ -227,7 +225,6 @@ const Projects = () => {
                       </div>
                     )}
 
-                    {/* Technologies */}
                     <div className="flex flex-wrap gap-2 mt-3">
                       {project.languages.map((lang, i) => (
                         <span

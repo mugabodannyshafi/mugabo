@@ -63,7 +63,6 @@ const Skills = () => {
         </motion.div>
 
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 w-full">
-          {/* Frontend Section */}
           <motion.div
             className="flex w-full lg:w-1/2 flex-col justify-center items-center gap-6"
             initial={{ opacity: 0, x: -50 }}
@@ -129,7 +128,6 @@ const Skills = () => {
             </motion.div>
           </motion.div>
 
-          {/* Backend Section */}
           <motion.div
             className="flex w-full lg:w-1/2 flex-col justify-center items-center gap-6"
             initial={{ opacity: 0, x: 50 }}
