@@ -9,6 +9,7 @@ import { CiLinkedin, CiInstagram } from "react-icons/ci";
 import { FiGithub } from "react-icons/fi";
 import { PiBehanceLogo } from "react-icons/pi";
 import { IoMdClose } from "react-icons/io";
+import Link from "next/link";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -75,7 +76,9 @@ const NavBar = () => {
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         <div className="flex items-center">
-          <Image src={logo} alt="Logo" width={40} height={40} />
+          <Link href={"/"}>
+            <Image src={logo} alt="Logo" width={40} height={40} />
+          </Link>
         </div>
 
         <motion.a
