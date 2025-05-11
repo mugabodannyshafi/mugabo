@@ -24,10 +24,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/shafiLogo.png" type="image/png" />
+        <title>Shafi Danny MUGABO</title>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-Poppins antialiased`}
       >
-        <GradientBackground> {children}</GradientBackground>
+        <GradientBackground>{children}</GradientBackground>
       </body>
     </html>
   );
