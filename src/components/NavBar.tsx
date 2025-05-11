@@ -77,7 +77,7 @@ const NavBar = () => {
       >
         <div className="flex items-center">
           <Link href={"/"}>
-            <Image src={logo} alt="Logo" width={40} height={40} />
+            <Image src={logo} alt="shafi Danny MUGABO | Portfolio" width={40} height={40} />
           </Link>
         </div>
 
