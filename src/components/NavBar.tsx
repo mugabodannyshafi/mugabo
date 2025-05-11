@@ -15,14 +15,11 @@ const NavBar = () => {
   const [visible, setVisible] = useState(true);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
 
-  // Handle scrolling behavior
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
       const isScrollingDown = currentScrollPos > prevScrollPos;
 
-      // Only hide navbar after scrolling down 60px from the top
-      // This prevents the navbar from hiding immediately on small scrolls
       const shouldBeVisible =
         currentScrollPos < 60 ||
         !isScrollingDown ||
@@ -38,7 +35,6 @@ const NavBar = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    // When opening menu, always make navbar visible
     if (!isMenuOpen) setVisible(true);
   };
 

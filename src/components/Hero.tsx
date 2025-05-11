@@ -24,11 +24,6 @@ const HeroSection = () => {
 
   return (
     <section className="w-full flex items-center justify-center px-4 md:px-6">
-      {/* 
-        Using a container div with different height classes based on screen size:
-        - Desktop/Laptop: 100vh height (full screen)
-        - Mobile/Tablet: Fixed height with enough space for content
-      */}
       <div className="h-[600px] md:h-[700px] lg:h-screen w-full max-w-4xl flex items-center">
         <div className="w-full">
           <motion.span
@@ -93,9 +88,11 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.8 }}
           >
-            <button className="border-green text-green border-[1px] rounded py-3 px-6 w-full sm:w-52 hover:bg-green/10 transition-colors">
-              Let's Build Something
-            </button>
+            <a href="mailto:mugabodannyshafi@gmail.com">
+              <button className="border-green text-green border-[1px] rounded py-3 px-6 w-full sm:w-52 hover:bg-green/10 transition-colors">
+                Let’s Talk
+              </button>
+            </a>
           </motion.div>
         </div>
       </div>
