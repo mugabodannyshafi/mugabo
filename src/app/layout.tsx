@@ -29,7 +29,7 @@ export default function RootLayout({
         <title>Shafi Danny MUGABO</title>
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-Poppins antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} font-Poppins antialiased overflow-x-hidden`}
       >
         <GradientBackground>{children}</GradientBackground>
       </body>

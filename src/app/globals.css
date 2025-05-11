@@ -67,6 +67,26 @@ body {
   }
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #102858;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4fcdb0;
+  border-radius: 50px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #43ffd3;
+}
+
 @layer base {
   * {
     @apply border-border;
