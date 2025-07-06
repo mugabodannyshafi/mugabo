@@ -1,8 +1,7 @@
 "use client";
-import React, { useRef, useState } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
-import { FiExternalLink, FiUsers } from "react-icons/fi";
-import { LinkPreview } from "./ui/link-preview";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { FiExternalLink, FiGithub, FiFolder } from "react-icons/fi";
 import Image from "next/image";
 import dealFlow from "@/static/deal.png";
 import roumeza from "@/static/roumeza.png";
@@ -10,237 +9,292 @@ import vegi from "@/static/vegi.png";
 import school from "@/static/school.png";
 import nita from "@/static/nita.png";
 import innocent from "@/static/innocent.png";
+import lost from "@/static/lost.png";
 
-const allWorks = [
+const projects = [
   {
-    name: "frontend",
-    projects: [
-      {
-        type: "featured",
-        name: "Deal Flow",
-        image: dealFlow,
-        description: "A web app for managing deals and workflows.",
-        languages: [
-          "JavaScript",
-          "TypeScript",
-          "NextJs",
-          "Redux Toolkit",
-          "SCSS",
-        ],
-        link: "https://dealflow-frontend.vercel.app/home",
-        collaborate: "Bien Aime",
-        collaborateLink: "https://www.bienaime.rw/",
-      },
-      {
-        type: "featured",
-        name: "Bright Kids School",
-        image: school,
-        description:
-          "A school website for sharing information with parents and students.",
-        languages: ["TypeScript", "React", "Tailwind", "Material UI"],
-        link: "https://bright-kids-school.vercel.app/",
-        collaborate: "none",
-        collaborateLink: "none",
-      },
-    ],
+    name: "Lost & Found Kigali",
+    image: lost,
+    description:
+      "A community-driven web app for reporting and finding lost or found items in Kigali. Users can post details, contact owners, and help others recover their belongings.",
+    tech: ["NestJS", "Next.js", "MySQL", "Tailwind", "Docker"],
+    link: "https://lost-found-kigali.vercel.app/",
+    type: "Full Stack",
+    status: "Live",
   },
   {
-    name: "backend",
-    projects: [
-      {
-        type: "featured",
-        name: "Nita Impressions",
-        image: nita,
-        description: "A system for managing events, employees, and finances.",
-        languages: ["NestJs", "TypeScript", "Postgres", "TypeORM"],
-        link: "private",
-        collaborate: "Mwungeri Ngabo Sevelin",
-        collaborateLink:
-          "https://www.linkedin.com/in/mwungeri-ngabo-sevelin-8aa453331/",
-      },
-      {
-        type: "featured",
-        name: "Vegi store",
-        image: vegi,
-        description:
-          "An online shop for selling fresh vegetables and groceries.",
-        languages: ["NestJs", "TypeScript", "Postgres", "TypeORM"],
-        link: "https://vegi-online.vercel.app/",
-        collaborate: "Mwungeri Ngabo Sevelin",
-        collaborateLink:
-          "https://www.linkedin.com/in/mwungeri-ngabo-sevelin-8aa453331/",
-      },
-    ],
+    name: "Roumeza Platform",
+    image: roumeza,
+    description:
+      "Complete fashion e-commerce platform with secure payment processing, inventory management, and customer analytics dashboard.",
+    tech: ["NestJS", "Next.js", "PostgreSQL", "Tailwind", "Zustand"],
+    link: "https://roumeza.vercel.app/",
+    type: "Full Stack",
+    status: "Live",
   },
   {
-    name: "fullstack",
-    projects: [
-      {
-        type: "featured",
-        name: "Roumeza Platform",
-        image: roumeza,
-        description:
-          "An online fashion store with secure shopping and product management.",
-        languages: [
-          "NestJs",
-          "TypeScript",
-          "Postgres",
-          "TypeORM",
-          "NextJs",
-          "Tailwind",
-          "Zustand",
-          "Shadcn",
-        ],
-        link: "https://roumeza.vercel.app/",
-        collaborate: "Egide IRAGENA",
-        collaborateLink: "https://iragena-egide.web.app/",
-      },
-      {
-        type: "featured",
-        name: "Innocent Ishimwe Art",
-        image: innocent,
-        description: "A portfolio website to showcase artwork and projects.",
-        languages: ["TypeScript", "NextJs", "Tailwind", "Sanity", "Gsap"],
-        link: "https://www.innocentishimwe.com/",
-        collaborate: "none",
-        collaborateLink: "none",
-      },
-    ],
+    name: "Deal Flow Management",
+    image: dealFlow,
+    description:
+      "Advanced deal management system with real-time analytics, collaboration tools, and automated workflow processing.",
+    tech: ["Next.js", "Redux Toolkit", "TypeScript", "SCSS"],
+    link: "https://dealflow-frontend.vercel.app/home",
+    type: "Frontend",
+    status: "Live",
+  },
+  {
+    name: "Vegi Store Backend",
+    image: vegi,
+    description:
+      "Scalable e-commerce backend for fresh produce delivery with inventory management and order processing systems.",
+    tech: ["NestJS", "PostgreSQL", "TypeORM", "Redis"],
+    link: "https://vegi-online.vercel.app/",
+    type: "Backend",
+    status: "Live",
+  },
+  {
+    name: "Artist Portfolio",
+    image: innocent,
+    description:
+      "Dynamic portfolio platform showcasing artistic works with interactive galleries and content management system.",
+    tech: ["Next.js", "Sanity", "GSAP", "Tailwind"],
+    link: "https://www.innocentishimwe.com/",
+    type: "Full Stack",
+    status: "Live",
+  },
+  {
+    name: "Event Management System",
+    image: nita,
+    description:
+      "Comprehensive event management backend with employee tracking, financial operations, and advanced reporting features.",
+    tech: ["NestJS", "TypeORM", "PostgreSQL", "JWT"],
+    link: "private",
+    type: "Backend",
+    status: "Private",
   },
 ];
 
 const Projects = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-100px" });
-  const [selectedCategory, setSelectedCategory] = useState("all");
+  const isInView = useInView(ref, { margin: "-100px" });
 
-  const allProjects = allWorks.flatMap((category) => category.projects);
-
-  const projectsToDisplay =
-    selectedCategory === "all"
-      ? allProjects
-      : allWorks.find((work) => work.name === selectedCategory)?.projects || [];
+  const getTypeColor = (type: string) => {
+    switch (type) {
+      case "Full Stack":
+        return "from-purple-500/20 to-pink-500/20 border-purple-500/30 text-purple-300";
+      case "Frontend":
+        return "from-blue-500/20 to-cyan-500/20 border-blue-500/30 text-blue-300";
+      case "Backend":
+        return "from-green-500/20 to-emerald-500/20 border-green-500/30 text-green-300";
+      default:
+        return "from-gray-500/20 to-gray-400/20 border-gray-500/30 text-gray-300";
+    }
+  };
 
   return (
-    <div
-      ref={ref}
-      className="w-full flex flex-col items-center py-10 text-white px-4"
-    >
-      <div className="flex flex-col items-start gap-2 mb-8">
-        <h2 className="text-3xl font-bold text-green">Some Works</h2>
-        <div className="h-[2px] w-8 rounded bg-green" />
+    <div className="w-full py-20 px-4 relative" ref={ref}>
+      {/* Subtle background decoration */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-20 right-20 w-32 h-32 border border-green/5 rounded-full"
+          animate={{ rotate: [0, 360] }}
+          transition={{
+            duration: 25,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "linear",
+          }}
+        />
       </div>
 
-      <div className="w-full overflow-x-auto mb-6 pb-2 scrollbar-hide">
-        <div className="flex space-x-3 min-w-max justify-center">
-          <button
-            onClick={() => setSelectedCategory("all")}
-            className={`px-6 py-2 rounded-full capitalize font-semibold transition-colors duration-300 text-center ${
-              selectedCategory === "all"
-                ? "bg-green text-black"
-                : "bg-green/10 text-slate hover:bg-green/20"
-            }`}
-          >
-            all
-          </button>
-          {allWorks.map((work) => (
-            <button
-              key={work.name}
-              onClick={() => setSelectedCategory(work.name)}
-              className={`px-6 py-2 rounded-full capitalize font-semibold transition-colors duration-300 text-center ${
-                selectedCategory === work.name
-                  ? "bg-green text-black"
-                  : "bg-green/10 text-slate hover:bg-green/20"
-              }`}
+      <div className="max-w-6xl mx-auto relative z-10">
+        {/* Enhanced Header */}
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="p-2 bg-green/10 rounded-lg">
+              <FiFolder className="h-6 w-6 text-green" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
+              Featured Work
+            </h2>
+          </div>
+          <motion.div
+            className="w-20 h-1 bg-gradient-to-r from-green via-green/60 to-transparent mx-auto rounded-full mb-4"
+            initial={{ width: 0 }}
+            animate={isInView ? { width: 80 } : { width: 0 }}
+            transition={{ duration: 1, delay: 0.3 }}
+          />
+          <p className="text-lightSlate text-lg max-w-2xl mx-auto">
+            A collection of projects that showcase my skills in modern web
+            development
+          </p>
+        </motion.div>
+
+        {/* Projects Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.name}
+              className="group bg-slate/5 backdrop-blur-sm border border-slate/20 rounded-2xl overflow-hidden hover:border-green/30 hover:shadow-xl hover:shadow-green/5 transition-all duration-500"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
             >
-              {work.name}
-            </button>
+              {/* Enhanced Image Section */}
+              <div className="relative h-48 overflow-hidden">
+                <Image
+                  src={project.image || "/placeholder.svg"}
+                  alt={project.name}
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent" />
+
+                {/* Status Badge */}
+                <div className="absolute top-4 right-4">
+                  <span
+                    className={`px-2 py-1 rounded-full text-xs font-medium backdrop-blur-sm border ${
+                      project.status === "Live"
+                        ? "bg-green/20 border-green/30 text-green"
+                        : "bg-orange/20 border-orange/30 text-orange-300"
+                    }`}
+                  >
+                    {project.status}
+                  </span>
+                </div>
+
+                {/* Type Badge */}
+                <div className="absolute top-4 left-4">
+                  <span
+                    className={`px-2 py-1 rounded-full text-xs font-medium backdrop-blur-sm border bg-gradient-to-r ${getTypeColor(
+                      project.type
+                    )}`}
+                  >
+                    {project.type}
+                  </span>
+                </div>
+              </div>
+
+              {/* Enhanced Content */}
+              <div className="p-6">
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="text-xl font-bold text-white group-hover:text-green transition-colors duration-300">
+                    {project.name}
+                  </h3>
+                  {project.link !== "private" && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="opacity-70 hover:opacity-100 text-lightSlate hover:text-green transition-all duration-300 p-1 rounded-lg hover:bg-green/10"
+                    >
+                      <FiExternalLink className="h-4 w-4" />
+                    </a>
+                  )}
+                </div>
+
+                <p className="text-lightSlate text-sm leading-relaxed mb-4 line-clamp-3">
+                  {project.description}
+                </p>
+
+                {/* Enhanced Tech Stack */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.tech.map((tech, i) => (
+                    <motion.span
+                      key={i}
+                      className="bg-green/10 text-green px-3 py-1 rounded-lg text-xs font-medium border border-green/20 hover:bg-green/20 hover:border-green/40 transition-all duration-300"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={
+                        isInView
+                          ? { opacity: 1, scale: 1 }
+                          : { opacity: 0, scale: 0.8 }
+                      }
+                      transition={{ delay: index * 0.1 + i * 0.05 }}
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      {tech}
+                    </motion.span>
+                  ))}
+                </div>
+
+                {/* Enhanced Action Buttons */}
+                <div className="flex gap-3">
+                  {project.link !== "private" && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 bg-green/10 text-green px-4 py-2 rounded-lg text-sm font-medium hover:bg-green/20 hover:scale-105 transition-all duration-300 border border-green/20"
+                    >
+                      <FiExternalLink className="h-4 w-4" />
+                      Live Demo
+                    </a>
+                  )}
+                  <button className="flex items-center gap-2 bg-slate/10 text-lightSlate px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate/20 hover:text-white hover:scale-105 transition-all duration-300 border border-slate/20">
+                    <FiGithub className="h-4 w-4" />
+                    Source
+                  </button>
+                </div>
+              </div>
+            </motion.div>
           ))}
         </div>
-      </div>
 
-      <div className="w-full max-w-6xl">
-        <div className="w-full flex flex-col md:flex-row flex-wrap gap-6 p-0">
-          <AnimatePresence mode="wait">
+        {/* Enhanced Stats Section */}
+        <motion.div
+          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+        >
+          {[
+            { label: "Projects Completed", value: "6+" },
+            { label: "Technologies Used", value: "15+" },
+            { label: "Live Applications", value: "5+" },
+            { label: "Years Experience", value: "2+" },
+          ].map((stat, index) => (
             <motion.div
-              key={selectedCategory}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="w-full flex flex-wrap gap-6 justify-center"
+              key={stat.label}
+              className="text-center p-6 bg-slate/5 backdrop-blur-sm border border-slate/20 rounded-xl hover:border-green/30 transition-all duration-300"
+              whileHover={{ y: -2 }}
             >
-              {projectsToDisplay.map((project, index) => (
-                <motion.div
-                  key={`${selectedCategory}-${index}`}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="p-0  w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] rounded-xl border-[#122d55] bg-[#0f2958] transition-all  flex flex-col hover:border-green/50  overflow-hidden"
-                >
-                  <div className="w-full h-48 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#112240] to-transparent z-10 opacity-60" />
-                    <Image
-                      src={project.image}
-                      alt={project.name}
-                      layout="fill"
-                      objectFit="cover"
-                      className="transition-transform duration-500 hover:scale-110"
-                    />
-                  </div>
-
-                  <div className="flex flex-col gap-2 p-4">
-                    <div className="flex justify-between items-center">
-                      <h4 className="text-sm capitalize text-green">
-                        {project.type} project
-                      </h4>
-                      {project.link !== "private" && (
-                        <a
-                          className="font-bold bg-clip-text text-transparent bg-gradient-to-br"
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <FiExternalLink className="inline text-2xl text-slate hover:text-green from-green to-green/60" />
-                        </a>
-                      )}
-                    </div>
-                    <h4 className="text-xl font-bold text-lightestSlate">
-                      {project.name}
-                    </h4>
-                    <p className="text-slate mt-2">{project.description}</p>
-
-                    {project.collaborate && project.collaborate !== "none" && (
-                      <div className="flex items-center gap-2 mt-3 text-sm text-lightestSlate">
-                        <FiUsers className="text-green" />
-                        <span>
-                          Collaborated with{" "}
-                          <LinkPreview
-                            url={project.collaborateLink}
-                            className="text-green font-medium"
-                          >
-                            {project.collaborate}
-                          </LinkPreview>
-                        </span>
-                      </div>
-                    )}
-
-                    <div className="flex flex-wrap gap-2 mt-3">
-                      {project.languages.map((lang, i) => (
-                        <span
-                          key={i}
-                          className="bg-green/10 rounded-full px-2 py-1 text-green text-[0.8rem]"
-                        >
-                          {lang}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+              <div className="text-2xl md:text-3xl font-bold text-green mb-2">
+                {stat.value}
+              </div>
+              <div className="text-sm text-lightSlate">{stat.label}</div>
             </motion.div>
-          </AnimatePresence>
-        </div>
+          ))}
+        </motion.div>
+
+        {/* Enhanced Call to Action */}
+        <motion.div
+          className="mt-20 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 1 }}
+        >
+          <div className="bg-slate/5 backdrop-blur-sm border border-slate/20 rounded-2xl p-8 max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Let's Build Something Amazing
+            </h3>
+            <p className="text-lightSlate mb-6">
+              Have a project in mind? I'd love to help bring your ideas to life
+              with modern web technologies.
+            </p>
+            <a
+              href="mailto:mugabodannyshafi@gmail.com"
+              className="inline-flex items-center gap-2 bg-green/10 border border-green/30 text-green px-8 py-3 rounded-lg font-medium hover:bg-green/20 hover:scale-105 transition-all duration-300"
+            >
+              Start a Conversation
+              <FiExternalLink className="h-4 w-4" />
+            </a>
+          </div>
+        </motion.div>
       </div>
     </div>
   );

@@ -1,98 +1,230 @@
 "use client";
-import React, { useEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { LinkPreview } from "./ui/link-preview";
+import { Mail, Download, MapPin } from "lucide-react";
 
 const HeroSection = () => {
-  const controls = useAnimation();
-
-  const textVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  };
+  const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    controls.start("visible");
-  }, [controls]);
+    const hero = heroRef.current;
+    if (!hero) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+
+      const xPos = (clientX / innerWidth - 0.5) * 8;
+      const yPos = (clientY / innerHeight - 0.5) * 8;
+
+      hero.style.transform = `translate(${xPos}px, ${yPos}px)`;
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   return (
-    <section className="w-full flex items-center justify-center px-4 md:px-6">
-      <div className="h-[600px] md:h-[700px] lg:h-screen w-full max-w-4xl flex items-center">
-        <div className="w-full">
-          <motion.span
-            className="text-green text-base block mb-3"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            Hello, my name is
-          </motion.span>
+    <section className="relative w-full min-h-screen flex items-center justify-center px-4 md:px-6 pt-20">
+      {/* Simple Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-1/4 right-1/4 w-16 h-16 border border-green/20 rotate-45"
+          animate={{
+            rotate: [45, 405],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/3 left-1/4 w-12 h-12 border border-green/10 rounded-full"
+          animate={{
+            y: [-10, 10, -10],
+            opacity: [0.2, 0.5, 0.2],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+          }}
+        />
+      </div>
 
-          <motion.h1
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-7xl font-bold text-white mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            MUGABO Shafi Danny.
-          </motion.h1>
-
-          <motion.h2
-            className="text-xl sm:text-2xl md:text-3xl lg:text-5xl text-lightSlate mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-          >
-            I make things with computer.
-          </motion.h2>
-
+      {/* Main Content */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* Left Column - Text Content */}
           <motion.div
-            className="text-slate text-sm md:text-base mt-6 mb-8 max-w-2xl space-y-4"
+            ref={heroRef}
+            className="space-y-6 transition-transform duration-100 ease-out"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
+            transition={{ duration: 0.6 }}
           >
-            <p>
-              I'm Shafi, a software developer currently working at{" "}
-              <LinkPreview
-                className="font-bold bg-clip-text text-transparent bg-gradient-to-br from-green to-green/60"
-                url="https://academicbridge.xyz/"
-              >
-                Academic Bridge
-              </LinkPreview>
-              . I enjoy learning new things, exploring nature, and building
-              useful stuff with code.
-            </p>
+            {/* Greeting */}
+            <motion.span
+              className="inline-flex items-center gap-2 text-green text-sm font-mono"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+            >
+              <span className="w-2 h-2 bg-green rounded-full animate-pulse" />
+              Hello, my name is
+            </motion.span>
 
-            <div className="mt-4">
-              <p className="mb-2 font-semibold text-lightSlate">
-                Currently learning:
+            {/* Name */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                <span className="block text-white">MUGABO Shafi Danny</span>
+              </h1>
+              <h2 className="text-xl sm:text-2xl md:text-3xl text-lightSlate mt-2 font-semibold">
+                I build things with a computer.
+              </h2>
+            </motion.div>
+
+            {/* Description */}
+            <motion.div
+              className="max-w-lg"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+            >
+              <p className="text-slate text-base leading-relaxed">
+                I'm a software developer at{" "}
+                <LinkPreview
+                  className="text-green hover:text-green/80 transition-colors font-medium"
+                  url="https://academicbridge.xyz/"
+                >
+                  Academic Bridge
+                </LinkPreview>
+                , passionate about building scalable web applications and
+                exploring new technologies.
               </p>
-              <ul className="list-disc list-inside space-y-1">
-                <li>System Architecture Design</li>
-                <li>Django REST Framework</li>
-                <li>Microsoft Azure</li>
-              </ul>
-            </div>
+
+              <div className="flex items-center gap-2 mt-4 text-sm text-lightSlate">
+                <MapPin className="h-4 w-4 text-green" />
+                <span>Kigali, Rwanda</span>
+              </div>
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 pt-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+            >
+              <motion.a
+                href="mailto:mugabodannyshafi@gmail.com"
+                className="inline-flex items-center justify-center gap-2 bg-green/10 border border-green/30 text-green px-6 py-3 rounded-lg font-medium hover:bg-green/20 transition-all duration-300"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Mail className="h-4 w-4" />
+                Let's Connect
+              </motion.a>
+            </motion.div>
           </motion.div>
 
+          {/* Right Column - Code Block */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
+            className="relative flex items-center justify-center"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <a href="mailto:mugabodannyshafi@gmail.com">
-              <button className="border-green text-green border-[1px] rounded py-3 px-6 w-full sm:w-52 hover:bg-green/10 transition-colors">
-                Let’s Talk
-              </button>
-            </a>
+            <motion.div
+              className="backdrop-blur-sm bg-slate/10 p-6 rounded-2xl border border-slate/20 w-full max-w-md"
+              animate={{
+                y: [-3, 3, -3],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut",
+              }}
+            >
+              {/* Terminal Header */}
+              <div className="flex items-center gap-2 mb-4 pb-3 border-b border-slate/20">
+                <div className="w-3 h-3 bg-red-500 rounded-full" />
+                <div className="w-3 h-3 bg-yellow-500 rounded-full" />
+                <div className="w-3 h-3 bg-green rounded-full" />
+                <span className="text-lightSlate text-sm ml-2 font-mono">
+                  developer.ts
+                </span>
+              </div>
+
+              {/* Code Content */}
+              <div className="space-y-2 font-mono text-sm">
+                <motion.div
+                  className="text-slate"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.8 }}
+                >
+                  <span className="text-purple-400">const</span>{" "}
+                  <span className="text-blue-400">developer</span> = {"{"}
+                </motion.div>
+
+                <motion.div
+                  className="text-slate ml-4"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1 }}
+                >
+                  name: <span className="text-green">"Shafi Danny MUGABO"</span>
+                  ,
+                </motion.div>
+
+                <motion.div
+                  className="text-slate ml-4"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.2 }}
+                >
+                  role:{" "}
+                  <span className="text-green">"Full Stack Developer"</span>,
+                </motion.div>
+
+                <motion.div
+                  className="text-slate ml-4"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.4 }}
+                >
+                  location: <span className="text-green">"Kigali, Rwanda"</span>
+                  ,
+                </motion.div>
+
+                <motion.div
+                  className="text-slate ml-4"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.6 }}
+                >
+                  passion:{" "}
+                  <span className="text-green">"Building amazing things"</span>
+                </motion.div>
+
+                <motion.div
+                  className="text-slate"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.8 }}
+                >
+                  {"}"};
+                </motion.div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
