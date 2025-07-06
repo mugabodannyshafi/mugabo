@@ -163,65 +163,204 @@ const HeroSection = () => {
                 </span>
               </div>
 
-              {/* Code Content */}
+              {/* Code Content with Line Numbers */}
               <div className="space-y-2 font-mono text-sm">
                 <motion.div
-                  className="text-slate"
+                  className="flex text-slate"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.8 }}
                 >
-                  <span className="text-purple-400">const</span>{" "}
-                  <span className="text-blue-400">developer</span> = {"{"}
+                  <span className="text-slate/40 select-none w-6 text-right mr-4">
+                    1
+                  </span>
+                  <div>
+                    <span className="text-purple-400">interface</span>{" "}
+                    <span className="text-cyan-400">Developer</span> {"{"}
+                  </div>
                 </motion.div>
 
                 <motion.div
-                  className="text-slate ml-4"
+                  className="flex text-slate"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 1 }}
+                  transition={{ delay: 0.9 }}
                 >
-                  name: <span className="text-green">"Shafi Danny MUGABO"</span>
-                  ,
+                  <span className="text-slate/40 select-none w-6 text-right mr-4">
+                    2
+                  </span>
+                  <div className="ml-4">
+                    <span className="text-blue-300">name</span>
+                    <span className="text-yellow-400">:</span>{" "}
+                    <span className="text-cyan-400">string</span>;
+                  </div>
                 </motion.div>
 
                 <motion.div
-                  className="text-slate ml-4"
+                  className="flex text-slate"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.0 }}
+                >
+                  <span className="text-slate/40 select-none w-6 text-right mr-4">
+                    3
+                  </span>
+                  <div className="ml-4">
+                    <span className="text-blue-300">role</span>
+                    <span className="text-yellow-400">:</span>{" "}
+                    <span className="text-cyan-400">string</span>;
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  className="flex text-slate"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.1 }}
+                >
+                  <span className="text-slate/40 select-none w-6 text-right mr-4">
+                    4
+                  </span>
+                  <div className="ml-4">
+                    <span className="text-blue-300">location</span>
+                    <span className="text-yellow-400">:</span>{" "}
+                    <span className="text-cyan-400">string</span>;
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  className="flex text-slate"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.2 }}
                 >
-                  role:{" "}
-                  <span className="text-green">"Full Stack Developer"</span>,
+                  <span className="text-slate/40 select-none w-6 text-right mr-4">
+                    5
+                  </span>
+                  <div className="ml-4">
+                    <span className="text-blue-300">passion</span>
+                    <span className="text-yellow-400">:</span>{" "}
+                    <span className="text-cyan-400">string</span>;
+                  </div>
                 </motion.div>
 
                 <motion.div
-                  className="text-slate ml-4"
+                  className="flex text-slate"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.3 }}
+                >
+                  <span className="text-slate/40 select-none w-6 text-right mr-4">
+                    6
+                  </span>
+                  <div>{"}"}</div>
+                </motion.div>
+
+                <motion.div
+                  className="flex text-slate"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.4 }}
                 >
-                  location: <span className="text-green">"Kigali, Rwanda"</span>
-                  ,
+                  <span className="text-slate/40 select-none w-6 text-right mr-4">
+                    7
+                  </span>
+                  <div></div>
                 </motion.div>
 
                 <motion.div
-                  className="text-slate ml-4"
+                  className="flex text-slate"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.5 }}
+                >
+                  <span className="text-slate/40 select-none w-6 text-right mr-4">
+                    8
+                  </span>
+                  <div>
+                    <span className="text-purple-400">const</span>{" "}
+                    <span className="text-blue-400">developer</span>
+                    <span className="text-yellow-400">:</span>{" "}
+                    <span className="text-cyan-400">Developer</span> = {"{"}
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  className="flex text-slate"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.6 }}
                 >
-                  passion:{" "}
-                  <span className="text-green">"Building amazing things"</span>
+                  <span className="text-slate/40 select-none w-6 text-right mr-4">
+                    9
+                  </span>
+                  <div className="ml-4">
+                    <span className="text-blue-300">name</span>
+                    <span className="text-yellow-400">:</span>{" "}
+                    <span className="text-green">"Shafi Danny MUGABO"</span>,
+                  </div>
                 </motion.div>
 
                 <motion.div
-                  className="text-slate"
+                  className="flex text-slate"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.7 }}
+                >
+                  <span className="text-slate/40 select-none w-6 text-right mr-4">
+                    10
+                  </span>
+                  <div className="ml-4">
+                    <span className="text-blue-300">role</span>
+                    <span className="text-yellow-400">:</span>{" "}
+                    <span className="text-green">"Full Stack Developer"</span>,
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  className="flex text-slate"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.8 }}
                 >
-                  {"}"};
+                  <span className="text-slate/40 select-none w-6 text-right mr-4">
+                    11
+                  </span>
+                  <div className="ml-4">
+                    <span className="text-blue-300">location</span>
+                    <span className="text-yellow-400">:</span>{" "}
+                    <span className="text-green">"Kigali, Rwanda"</span>,
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  className="flex text-slate"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.9 }}
+                >
+                  <span className="text-slate/40 select-none w-6 text-right mr-4">
+                    12
+                  </span>
+                  <div className="ml-4">
+                    <span className="text-blue-300">passion</span>
+                    <span className="text-yellow-400">:</span>{" "}
+                    <span className="text-green">
+                      "Building amazing things"
+                    </span>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  className="flex text-slate"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 2.0 }}
+                >
+                  <span className="text-slate/40 select-none w-6 text-right mr-4">
+                    13
+                  </span>
+                  <div>{"}"}</div>
                 </motion.div>
               </div>
             </motion.div>
