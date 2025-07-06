@@ -1,14 +1,8 @@
 "use client";
-
-import {
-  useMotionValueEvent,
-  useScroll,
-  useTransform,
-  motion,
-} from "framer-motion";
-import React, { useEffect, useRef, useState } from "react";
-import { HiArrowNarrowRight } from "react-icons/hi";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { LinkPreview } from "./ui/link-preview";
+import { Calendar, MapPin, Briefcase, Building2 } from "lucide-react";
 
 const experiences = [
   {
@@ -21,13 +15,15 @@ const experiences = [
     skills: [
       "TypeScript",
       "NestJS",
-      "Mysql",
+      "MySQL",
       "Docker",
       "Jest",
       "nginx",
       "REST APIs",
       "Redis",
     ],
+    type: "Full-time",
+    location: "Kigali, Rwanda",
   },
   {
     date: "February 2024 - November 2024",
@@ -41,108 +37,181 @@ const experiences = [
       "React",
       "Node.js",
       "Express",
-      "PostgresDB",
+      "PostgreSQL",
       "Tailwind",
     ],
+    type: "Internship",
+    location: "Kigali, Rwanda",
   },
 ];
 
 const Experience = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [height, setHeight] = useState(0);
-
-  useEffect(() => {
-    if (ref.current) {
-      const rect = ref.current.getBoundingClientRect();
-      setHeight(rect.height);
-    }
-  }, [ref]);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start 10%", "end 50%"],
-  });
-
-  const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
-  const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { margin: "-100px" });
 
   return (
-    <div
-      className="w-full text-white font-sans px-4 md:px-6"
-      ref={containerRef}
-    >
-      <div className="max-w-7xl mx-auto py-10">
-        <div className="flex flex-col justify-start items-center md:items-start gap-1 mb-8 w-full max-w-4xl">
-          <span className="text-xl md:text-2xl text-green">Experience</span>
-          <motion.div
-            className="w-10 h-[2px] rounded bg-green"
-            initial={{ width: 0 }}
-            whileInView={{ width: 40 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          />
-        </div>
+    <div className="w-full py-20 px-4 md:px-6 relative" ref={ref}>
+      {/* Simple Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-20 right-20 w-24 h-24 border border-green/10 rounded-full"
+          animate={{
+            rotate: [0, 360],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "linear",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-20 left-20 w-20 h-20 border border-green/5 rotate-45"
+          animate={{
+            rotate: [45, 405],
+            y: [-5, 5, -5],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+          }}
+        />
       </div>
 
-      <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
-        {experiences.map((item, index) => (
-          <motion.div
-            key={index}
-            className="flex justify-start pt-10 md:pt-24 md:gap-10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
-          >
-            <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
-              <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-navy flex items-center justify-center">
-                <div className="h-4 w-4 rounded-full bg-green/30 border border-green/50 p-2" />
-              </div>
-              <h3 className="hidden md:block text-xl md:pl-20 md:text-2xl font-bold text-green">
-                {item.date}
-              </h3>
+      <div className="max-w-6xl mx-auto relative z-10">
+        {/* Header */}
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="p-2 bg-green/10 rounded-lg">
+              <Briefcase className="h-6 w-6 text-green" />
             </div>
-            <div className="relative pl-20 pr-4 md:pl-4 w-full">
-              <h3 className="md:hidden block text-lg mb-2 text-left font-bold text-green">
-                {item.date}
-              </h3>
-              <div className="mb-4">
-                <h4 className="text-xl font-semibold text-white mb-1">
-                  {item.title}
-                </h4>
-                <LinkPreview url={item.link} className="text-green">
-                  {item.company}
-                </LinkPreview>
-                <p className="mt-2 text-gray-300">{item.description}</p>
-                <div className="flex flex-row gap-2 flex-wrap mt-3">
-                  {item.skills.map((skill, skillIndex) => (
-                    <div
-                      key={skillIndex}
-                      className="bg-green/10 rounded-full px-2 py-1 text-green text-sm flex justify-center items-center"
-                    >
-                      <span>{skill}</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
+              Professional Experience
+            </h2>
+          </div>
+          <motion.div
+            className="w-16 h-1 bg-green mx-auto rounded-full mb-4"
+            initial={{ width: 0 }}
+            animate={isInView ? { width: 64 } : { width: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          />
+          <p className="text-lightSlate text-lg max-w-2xl mx-auto">
+            My journey in software development and the experiences that shaped
+            my career
+          </p>
+        </motion.div>
+
+        {/* Experience Cards */}
+        <div className="space-y-8">
+          {experiences.map((experience, index) => (
+            <motion.div
+              key={index}
+              className="bg-slate/5 backdrop-blur-sm border border-slate/20 rounded-2xl p-6 md:p-8 hover:border-green/30 transition-all duration-500"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              whileHover={{ y: -5 }}
+            >
+              <div className="flex flex-col lg:flex-row lg:items-start gap-6">
+                {/* Left Column - Company Info */}
+                <div className="lg:w-1/3">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2 bg-green/10 rounded-lg">
+                      <Building2 className="h-5 w-5 text-green" />
                     </div>
-                  ))}
+                    <span className="bg-green/20 text-green px-3 py-1 rounded-full text-sm font-medium">
+                      {experience.type}
+                    </span>
+                  </div>
+
+                  <LinkPreview
+                    url={experience.link}
+                    className="text-green hover:text-green/80 transition-colors text-lg font-bold block mb-2"
+                  >
+                    {experience.company}
+                  </LinkPreview>
+
+                  <div className="space-y-2 text-sm text-lightSlate">
+                    <div className="flex items-center gap-2">
+                      <Calendar className="h-4 w-4" />
+                      <span>{experience.date}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <MapPin className="h-4 w-4" />
+                      <span>{experience.location}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Column - Role Details */}
+                <div className="lg:w-2/3">
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-4">
+                    {experience.title}
+                  </h3>
+
+                  <p className="text-lightSlate leading-relaxed mb-6">
+                    {experience.description}
+                  </p>
+
+                  {/* Skills */}
+                  <div className="space-y-3">
+                    <h4 className="text-white font-semibold text-sm">
+                      Technologies & Tools
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {experience.skills.map((skill, skillIndex) => (
+                        <motion.span
+                          key={skillIndex}
+                          className="bg-green/10 text-green px-3 py-1 rounded-lg text-sm font-medium border border-green/20 hover:bg-green/20 transition-all duration-300"
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={
+                            isInView
+                              ? { opacity: 1, scale: 1 }
+                              : { opacity: 0, scale: 0.8 }
+                          }
+                          transition={{
+                            delay: index * 0.2 + skillIndex * 0.05,
+                          }}
+                          whileHover={{ scale: 1.05 }}
+                        >
+                          {skill}
+                        </motion.span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
-        ))}
-        <div
-          style={{
-            height: height + "px",
-          }}
-          className="absolute md:left-8 left-8 top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-gray-700 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
-        >
-          <motion.div
-            style={{
-              height: heightTransform,
-              opacity: opacityTransform,
-            }}
-            className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-t from-green via-green/50 to-transparent from-[0%] via-[10%] rounded-full"
-          />
+            </motion.div>
+          ))}
         </div>
+
+        {/* Call to Action */}
+        <motion.div
+          className="mt-16 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+        >
+          <div className="inline-flex items-center gap-4 bg-slate/5 backdrop-blur-sm border border-slate/20 rounded-2xl px-6 py-4">
+            <div className="flex items-center gap-2">
+              <Briefcase className="h-5 w-5 text-green" />
+              <span className="text-white font-semibold">
+                2+ Years Experience
+              </span>
+            </div>
+            <div className="w-px h-6 bg-slate/30" />
+            <div className="flex items-center gap-2">
+              <Building2 className="h-5 w-5 text-green" />
+              <span className="text-lightSlate">Full Stack Development</span>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </div>
   );

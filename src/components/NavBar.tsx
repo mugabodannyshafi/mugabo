@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import logo from "@/static/shafiLogo.png";
@@ -20,7 +20,6 @@ const NavBar = () => {
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
       const isScrollingDown = currentScrollPos > prevScrollPos;
-
       const shouldBeVisible =
         currentScrollPos < 60 ||
         !isScrollingDown ||
@@ -70,14 +69,27 @@ const NavBar = () => {
   return (
     <>
       <motion.header
-        className="fixed top-0 left-0 w-full h-16 md:h-20 px-5 flex justify-between items-center bg-darkSlate backdrop-blur-lg bg-opacity-80 z-50"
+        className="fixed top-0 left-0 w-full h-16 md:h-20 px-5 flex justify-between items-center bg-navy/80 backdrop-blur-xl border-b border-slate/10 z-50"
         initial={{ y: 0 }}
         animate={{ y: visible ? 0 : "-100%" }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         <div className="flex items-center">
           <Link href={"/"}>
-            <Image src={logo} alt="shafi Danny MUGABO | Portfolio" width={40} height={40} />
+            <motion.div
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative"
+            >
+              <div className="absolute inset-0 bg-green/20 rounded-full blur-md" />
+              <Image
+                src={logo || "/placeholder.svg"}
+                alt="shafi Danny MUGABO | Portfolio"
+                width={40}
+                height={40}
+                className="relative z-10"
+              />
+            </motion.div>
           </Link>
         </div>
 
@@ -86,10 +98,10 @@ const NavBar = () => {
           target="_blank"
           rel="noopener noreferrer"
           download="shafi.pdf"
-          className="hidden md:block border-green text-green border-[1px] rounded py-2 px-5"
+          className="hidden md:block border-green text-green border-[1px] rounded-lg py-2 px-6 font-medium backdrop-blur-sm bg-green/5 hover:bg-green/10 transition-all duration-300"
           whileHover={{
             scale: 1.05,
-            backgroundColor: "rgba(64, 255, 128, 0.1)",
+            boxShadow: "0 0 20px rgba(64, 255, 128, 0.3)",
           }}
           whileTap={{ scale: 0.95 }}
         >
@@ -97,7 +109,7 @@ const NavBar = () => {
         </motion.a>
 
         <motion.button
-          className="md:hidden flex items-center justify-center text-green text-2xl"
+          className="md:hidden flex items-center justify-center text-green text-2xl p-2 rounded-lg hover:bg-green/10 transition-colors"
           onClick={toggleMenu}
           whileTap={{ scale: 0.9 }}
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -109,7 +121,7 @@ const NavBar = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="fixed inset-0 bg-navy bg-opacity-95 z-40 flex flex-col justify-center items-center md:hidden"
+            className="fixed inset-0 bg-navy/95 backdrop-blur-xl z-40 flex flex-col justify-center items-center md:hidden"
             initial={{ opacity: 0, y: "-100%" }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: "-100%" }}
@@ -121,13 +133,13 @@ const NavBar = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 download="shafi.pdf"
-                className="border-green text-green border-[1px] rounded py-3 px-10 text-lg"
+                className="border-green text-green border-[1px] rounded-lg py-3 px-10 text-lg font-medium backdrop-blur-sm bg-green/5 hover:bg-green/10 transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
                 whileHover={{
                   scale: 1.05,
-                  backgroundColor: "rgba(64, 255, 128, 0.1)",
+                  boxShadow: "0 0 20px rgba(64, 255, 128, 0.3)",
                 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -135,7 +147,7 @@ const NavBar = () => {
               </motion.a>
 
               <motion.div
-                className="flex flex-row items-center justify-center gap-5 mt-6"
+                className="flex flex-row items-center justify-center gap-6 mt-6"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
@@ -147,8 +159,8 @@ const NavBar = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="text-lightestSlate hover:text-green transition-colors duration-300"
-                    whileHover={{ scale: 1.1 }}
+                    className="text-lightestSlate hover:text-green transition-colors duration-300 p-3 rounded-full hover:bg-green/10"
+                    whileHover={{ scale: 1.2, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     <Icon className="text-2xl" />
@@ -159,6 +171,30 @@ const NavBar = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Desktop Social Links */}
+      <div className="fixed text-green left-10 bottom-0 hidden lg:flex flex-col items-center gap-6 z-20">
+        {socialLinks.map(({ Icon, href, label }) => (
+          <motion.a
+            key={href}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={label}
+            className="text-slate hover:text-green transition-all duration-300 p-2 rounded-lg hover:bg-green/10"
+            whileHover={{ scale: 1.1, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Icon size={22} />
+          </motion.a>
+        ))}
+        <motion.div
+          className="h-24 w-px bg-slate mt-2"
+          initial={{ height: 0 }}
+          animate={{ height: 96 }}
+          transition={{ duration: 1, delay: 0.5 }}
+        />
+      </div>
     </>
   );
 };
