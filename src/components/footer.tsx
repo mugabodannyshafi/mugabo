@@ -62,8 +62,6 @@ const Footer = () => {
         >
           <p className="text-xs text-center flex items-center gap-2">
             © {new Date().getFullYear()} All rights reserved.
-            <span className="w-1 h-1 bg-green rounded-full animate-pulse" />
-            <span className="text-green/60">Made with passion in Rwanda</span>
           </p>
         </motion.div>
       </div>
