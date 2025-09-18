@@ -10,8 +10,19 @@ import school from "@/static/school.png";
 import nita from "@/static/nita.png";
 import innocent from "@/static/innocent.png";
 import lost from "@/static/lost.png";
+import nest from "@/static/nestjs.jpg"
 
 const projects = [
+  {
+    name: "nestForge CLI",
+    image: nest,
+    description:
+      "A CLI tool that scaffolds full production-ready NestJS apps with database setup, authentication strategies, Swagger docs, and CI/CD configs — automating what usually takes hours into seconds.",
+    tech: ["NestJS", "TypeScript", "CLI", "PostgreSQL", "MongoDB", "MySQL"],
+    link: "https://github.com/mugabodannyshafi/nestForge#readme",
+    type: "Backend Tool",
+    status: "Live",
+  },
   {
     name: "Lost & Found Kigali",
     image: lost,
@@ -40,16 +51,6 @@ const projects = [
     tech: ["Next.js", "Redux Toolkit", "TypeScript", "SCSS"],
     link: "https://dealflow-frontend.vercel.app/home",
     type: "Frontend",
-    status: "Live",
-  },
-  {
-    name: "Vegi Store Backend",
-    image: vegi,
-    description:
-      "Scalable e-commerce backend for fresh produce delivery with inventory management and order processing systems.",
-    tech: ["NestJS", "PostgreSQL", "TypeORM", "Redis"],
-    link: "https://vegi-online.vercel.app/",
-    type: "Backend",
     status: "Live",
   },
   {

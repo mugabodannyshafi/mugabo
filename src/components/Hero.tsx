@@ -99,7 +99,7 @@ const HeroSection = () => {
               transition={{ delay: 0.4 }}
             >
               <p className="text-slate text-base leading-relaxed">
-                I'm a software developer at{" "}
+                I'm a software engineer at{" "}
                 <LinkPreview
                   className="text-green hover:text-green/80 transition-colors font-medium"
                   url="https://academicbridge.xyz/"
@@ -313,7 +313,7 @@ const HeroSection = () => {
                   <div className="ml-4">
                     <span className="text-blue-300">role</span>
                     <span className="text-yellow-400">:</span>{" "}
-                    <span className="text-green">"Full Stack Developer"</span>,
+                    <span className="text-green">"Software Engineer"</span>,
                   </div>
                 </motion.div>
 
