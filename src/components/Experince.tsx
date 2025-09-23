@@ -26,8 +26,8 @@ const experiences = [
     location: "Kigali, Rwanda",
   },
   {
-    date: "February 2024 - November 2024",
-    title: "Full-Stack Developer Intern",
+    date: "October 2023 - November 2024",
+    title: "Full-Stack Developer",
     company: "Andela, Kigali",
     link: "https://www.andela.com/",
     description:

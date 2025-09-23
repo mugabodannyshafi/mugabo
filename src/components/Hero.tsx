@@ -99,7 +99,7 @@ const HeroSection = () => {
               transition={{ delay: 0.4 }}
             >
               <p className="text-slate text-base leading-relaxed">
-                I'm a software engineer at{" "}
+                I'm currently a software engineer at{" "}
                 <LinkPreview
                   className="text-green hover:text-green/80 transition-colors font-medium"
                   url="https://academicbridge.xyz/"

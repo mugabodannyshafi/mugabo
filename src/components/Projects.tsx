@@ -14,12 +14,12 @@ import nest from "@/static/nestjs.jpg"
 
 const projects = [
   {
-    name: "nestForge CLI",
+    name: "Nestify CLI",
     image: nest,
     description:
       "A CLI tool that scaffolds full production-ready NestJS apps with database setup, authentication strategies, Swagger docs, and CI/CD configs — automating what usually takes hours into seconds.",
     tech: ["NestJS", "TypeScript", "CLI", "PostgreSQL", "MongoDB", "MySQL"],
-    link: "https://github.com/mugabodannyshafi/nestForge#readme",
+    link: "https://srt.rw/0sGZch",
     type: "Backend Tool",
     status: "Live",
   },
