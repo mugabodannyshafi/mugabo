@@ -26,7 +26,7 @@ const experiences = [
     location: "Kigali, Rwanda",
   },
   {
-    date: "October 2023 - November 2024",
+    date: "january 2023 - November 2024",
     title: "Full-Stack Developer",
     company: "Andela, Kigali",
     link: "https://www.andela.com/",
@@ -40,7 +40,7 @@ const experiences = [
       "PostgreSQL",
       "Tailwind",
     ],
-    type: "Internship",
+    type: "fulltime",
     location: "Kigali, Rwanda",
   },
 ];
@@ -202,7 +202,7 @@ const Experience = () => {
             <div className="flex items-center gap-2">
               <Briefcase className="h-5 w-5 text-green" />
               <span className="text-white font-semibold">
-                2+ Years Experience
+                3+ Years Experience
               </span>
             </div>
             <div className="w-px h-6 bg-slate/30" />

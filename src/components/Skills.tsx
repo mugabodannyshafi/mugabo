@@ -116,7 +116,7 @@ const Skills = () => {
 
               <div className="text-center text-lightSlate text-sm md:text-base px-2 mb-6 leading-relaxed">
                 <span>
-                  I have 2+ years of experience in building client-side web
+                  I have 3+ years of experience in building client-side web
                   applications. My skills include{" "}
                   <span className="text-white cursor-pointer hover:text-green transition-colors">
                     HTML
@@ -201,7 +201,7 @@ const Skills = () => {
 
               <div className="text-center text-lightSlate text-sm md:text-base px-2 mb-6 leading-relaxed">
                 <span>
-                  I have 2+ years of experience in building backend
+                  I have 3+ years of experience in building backend
                   applications. I specialize in{" "}
                   <span className="text-white cursor-pointer hover:text-green transition-colors">
                     Node.js
