@@ -257,7 +257,7 @@ const Projects = () => {
             { label: "Projects Completed", value: "6+" },
             { label: "Technologies Used", value: "15+" },
             { label: "Live Applications", value: "5+" },
-            { label: "Years Experience", value: "2+" },
+            { label: "Years Experience", value: "3+" },
           ].map((stat, index) => (
             <motion.div
               key={stat.label}
