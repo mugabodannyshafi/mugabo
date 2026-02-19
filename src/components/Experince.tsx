@@ -7,7 +7,7 @@ import { Calendar, MapPin, Briefcase, Building2 } from "lucide-react";
 const experiences = [
   {
     date: "August 2024 - Present",
-    title: "Backend Developer",
+    title: "Software Developer",
     company: "Academic Bridge, Kigali",
     link: "https://academicbridge.xyz/",
     description:

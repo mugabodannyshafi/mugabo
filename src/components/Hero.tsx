@@ -84,7 +84,7 @@ const HeroSection = () => {
               transition={{ delay: 0.3 }}
             >
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                <span className="block text-white">MUGABO Shafi Danny</span>
+                <span className="block text-white">Shafi Danny Mugabo</span>
               </h1>
               <h2 className="text-xl sm:text-2xl md:text-3xl text-lightSlate mt-2 font-semibold">
                 I build things with a computer.
