@@ -94,7 +94,7 @@ const NavBar = () => {
         </div>
 
         <motion.a
-          href="shafi.pdf"
+          href="shaffy.pdf"
           target="_blank"
           rel="noopener noreferrer"
           download="shafi.pdf"
@@ -129,7 +129,7 @@ const NavBar = () => {
           >
             <div className="flex flex-col items-center space-y-8">
               <motion.a
-                href="shafi.pdf"
+                href="shaffy.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 download="shafi.pdf"
