@@ -6,7 +6,43 @@ import { Calendar, MapPin, Briefcase, Building2 } from "lucide-react";
 
 const experiences = [
   {
-    date: "August 2024 - Present",
+    date: "February 2026 - Present",
+    title: "Full-Stack Developer",
+    company: "RukaPay, Uganda",
+    link: "https://www.rukapay.co.ug/",
+    description:
+      "Building payment and financial solutions. Delivering full-stack features and integrations for scalable fintech products.",
+    skills: [
+      "TypeScript",
+      "React",
+      "Node.js",
+      "REST APIs",
+      "PostgreSQL",
+    ],
+    type: "Part-time",
+    workMode: "Remote",
+    location: "Kampala, Uganda",
+  },
+  {
+    date: "November 2025 - Present",
+    title: "Founding Software Developer",
+    company: "Nextline, Rwanda",
+    link: "https://nextlinehub.com",
+    description:
+      "Founding developer building product from the ground up. Owning architecture, implementation, and delivery across the stack.",
+    skills: [
+      "TypeScript",
+      "React",
+      "Node.js",
+      "PostgreSQL",
+      "REST APIs",
+    ],
+    type: "Full-time",
+    workMode: "Remote",
+    location: "Kigali, Rwanda",
+  },
+  {
+    date: "August 2024 - March 2026",
     title: "Software Developer",
     company: "Academic Bridge, Kigali",
     link: "https://academicbridge.xyz/",
@@ -23,6 +59,7 @@ const experiences = [
       "Redis",
     ],
     type: "Full-time",
+    workMode: "On-site",
     location: "Kigali, Rwanda",
   },
   {
@@ -40,7 +77,8 @@ const experiences = [
       "PostgreSQL",
       "Tailwind",
     ],
-    type: "fulltime",
+    type: "Full-time",
+    workMode: "Remote",
     location: "Kigali, Rwanda",
   },
 ];
@@ -127,6 +165,9 @@ const Experience = () => {
                     </div>
                     <span className="bg-green/20 text-green px-3 py-1 rounded-full text-sm font-medium">
                       {experience.type}
+                    </span>
+                    <span className="bg-green/20 text-green px-3 py-1 rounded-full text-sm font-medium">
+                      {experience.workMode}
                     </span>
                   </div>
 
