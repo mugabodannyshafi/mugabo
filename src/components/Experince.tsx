@@ -29,7 +29,7 @@ const experiences = [
     company: "Nextline, Rwanda",
     link: "https://nextlinehub.com",
     description:
-      "Founding developer building product from the ground up. Owning architecture, implementation, and delivery across the stack.",
+      "Building a modern real estate platform that connects buyers, renters, property owners, and agents in Rwanda. Delivering powerful search, interactive maps, and detailed listings to simplify property discovery and bring more transparency and efficiency to the market. Working across the stack to make finding and listing properties simple, fast, and accessible for everyone.",
     skills: [
       "TypeScript",
       "React",
