@@ -99,15 +99,7 @@ const HeroSection = () => {
               transition={{ delay: 0.4 }}
             >
               <p className="text-slate text-base leading-relaxed">
-                I'm currently a software engineer at{" "}
-                <LinkPreview
-                  className="text-green hover:text-green/80 transition-colors font-medium"
-                  url="https://academicbridge.xyz/"
-                >
-                  Academic Bridge
-                </LinkPreview>
-                , passionate about building scalable web applications and
-                exploring new technologies.
+                Software Engineer and Open-Source Enthusiast building web applications, APIs, and developer tools. Creator of Nestify, an open-source NestJS CLI designed to simplify and accelerate backend development.
               </p>
 
               <div className="flex items-center gap-2 mt-4 text-sm text-lightSlate">
